@@ -3,6 +3,8 @@ COMMON_WORDS = ['in', 'the']
 VERBS = ['sits', 'read:']
 CONJUNCTIONS = ['and']
 MAX_WS = 4
+NL = '\n'
+
 
 def article(s):
     if s[0] == "'":  # quoted letter name
@@ -12,8 +14,8 @@ def article(s):
     return f'{aan} {s}'
 
 
-def concat(text_list):
-    return ' '.join(text_list)
+def concat(text_list, sep=' '):
+    return sep.join(text_list)
 
 
 class Reader():
@@ -23,13 +25,6 @@ class Reader():
     def letter(self, c, adj='next', loc='', ccase='', punct=','):
         if c == '\n':
             return c * 2
-        if c in "'_":
-            return ''
-        if c == ' ':
-            return 'Then there is a space.'
-        if c == '.':
-            self.wordstate = 0
-            return 'then there is a period, ending the current sentence.\n\n'
         if c == ',':
             return 'Then there is a comma.'
         if c == ':':
@@ -51,7 +46,7 @@ class Reader():
     def word(self, w, adj='next', loc=''):
         #if w == 'reader':
         #    return self.selfref(w, adj, loc)
-        w = w.strip()
+        w = w.strip('.')
         if w in VERBS:
             return self.verb_word(w, adj, loc)
         if w in CONJUNCTIONS:
@@ -127,7 +122,7 @@ class Reader():
         elif w == 'reader':
             comment = 'The reader nods at the reference to themself.'  # reflexive singular pronoun
         elif w == 'book':
-            comment = ', _this_ book.'
+            comment = "'Book' — _this_ book."
         elif self.wordstate == 3:
             comment = 'The reader nods again, and continues to read.'
         return comment
@@ -141,18 +136,41 @@ class Reader():
             r += " It just happened seconds ago."
         return r
 
-
-    def read(self, text):
-        """Reader reads text."""
-        text = text.split(' ')
+    def read_sentence(self, sentence, context='next', loc=''):
+        """Reader reads a single sentence."""
+        text = sentence.split(' ')
         output = []
-        first = self.word(text[0], 'first', 'on the page')
-        self.wordstate += 1
-        output.append(first)
-        for w in text[1:]:
+        if context.startswith('first'):
+            first = self.word(text[0], 'first', 'on the page')
+            self.wordstate = 1
+            output.append(first)
+            text = text[1:]
+        for w in text:
             a = self.word(w)
-            if a:
-                output.append(a)
-                self.wordstate = (self.wordstate + 1) % MAX_WS
+            output.append(a)
+            self.wordstate = (self.wordstate + 1) % MAX_WS
+        if context == 'first_book':
+            output[-1] = output[-1][:-1] + ', thus ending the first sentence of this peculiar book.\n\n'
+        else:
+            output.append('Then there is a period, ending the current sentence.\n\n')
+        return concat(output, NL)
+
+    def read(self, text, context=''):
+        """
+        Reader reads text.
+        Each sentence is separated by a new line (NL).
+        """
+        text = text.split(NL)
+        output = []
+        if context in ('first_page', 'first_book'):
+            first = self.read_sentence(text[0], context, 'on the page')
+            self.wordstate += 1
+            output.append(first)
+            text = text[1:]
+            context = 'next'
+        for s in text:
+            a = self.read_sentence(s)
+            output.append(a)
+            #self.wordstate = (self.wordstate + 1) % MAX_WS
         return concat(output)
 

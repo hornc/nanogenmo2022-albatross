@@ -35,7 +35,7 @@ def story(seedfile):
     reader = Reader()
     book = Book(TITLE)
     book.append(1, start)
-    a = reader.read(start)
+    a = reader.read(start, 'first_book')
     b = reader.read(a)
     book.append(1, a)
     book.append(1, b)
