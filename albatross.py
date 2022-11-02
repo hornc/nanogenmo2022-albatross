@@ -5,11 +5,12 @@ import subprocess
 import sys
 
 from albatross.reader import Reader
-from albatross.plot import J1, J2
+from albatross.plot import J1, J2, Q1, Q2
 
 
 TITLE = "Perspective of an Albatross"
 NL = '\n'
+PAR = NL * 2
 
 PNUM = re.compile(r'\d+$|CHAPTER 1$')
 CHEAD = re.compile(r'CHAPTER \d+$')
@@ -110,6 +111,13 @@ def ordinal(n):
     return ords[n]
 
 
+def quote(s):
+    output = []
+    for b in s.split(NL*2):
+        output.append(f'> {b}')
+    return PAR.join(output)
+
+
 def tc(book, p, line, letter):
     """Generate test case results."""
     r = book.get_page(p, line, letter)
@@ -169,14 +177,23 @@ def story(seedfile):
     b = reader.read(get_sentences(a, 3))
     book.append(1, a)
     book.append(1, b)
-    book.append(1, J1)
 
+    # First jump
     c = reader.read(get_sentences(b, 3))
+    cpage = str(8)  # chapter 3 page number
+    book.append(1, J1.replace('%%300%%', cpage))
     book.append(1, reader.read(get_sentences(c, 3), 'first_page'))
 
+    # Second jump
     book.append(3, c)
-    book.append(1, J2)
+    d = c  # TODO: make different from c!
+    dpage = str(13) # TODO: needs to be looked up
+    paragraphs = str(d.count(PAR))
+    quote1 = f'{Q2}\n\n{quote(NL.join(d.split(NL)[:30]))}'
+    book.append(7, f'{Q1}{Q2}\n\n{d}')
+    book.append(1, J2.replace('%%QUOTE1%%', quote1).replace('%%paragraph%%', paragraphs).replace('%%700%%', dpage))
 
+    # Insert stucture view test cases and commentary
     test_book_get(book)
 
     return book
