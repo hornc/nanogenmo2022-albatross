@@ -38,7 +38,7 @@ Immediately following the quote is a {RR} (the text on the page actually uses th
 
 and so on...
 
-But then the style changes to descriping the _letter forms_, down to the curves and uprights of the type:
+But then the style changes to describing the _letter forms_, down to the curves and uprights of the type:
 
 > %%QUOTE2%%
 
