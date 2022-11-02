@@ -50,19 +50,24 @@ class Book():
         self._pages = pages
         return self._pages
 
-    def get_page(self, n, sentence=None, letter=None):
+    def get_page(self, n, line_no=None, letter=None):
         """
         Returns the text of page n.
-        Or a specific sentence number,
-        or a character in that sentence.
+        Or a specific line number,
+        or a character in that line.
         """
-        if sentence:
-            sentences = [s for s in self.pages[n].split(NL) if not CHEAD.match(s)]
-            s = sentences[sentence - 1]
-            if letter:
-                return NONALPHA.sub('', s)[letter - 1]
-            else:
-                return s
+        if line_no:
+            line_no -= 1 if line_no > 0 else 0
+            try:
+                lines = [line for line in self.pages[n].split(NL) if line and not CHEAD.match(line)]
+                line = lines[line_no]
+                if letter:
+                    letter -= 1 if letter > 0 else 0
+                    return NONALPHA.sub('', line)[letter]
+                else:
+                    return line
+            except IndexError as e:
+                return "CURRENTLY EMPTY"
         return self.pages[n]
 
     def show(self):
@@ -88,31 +93,65 @@ class Book():
 
 
 def get_sentences(text, n):
-    # TODO: refactor!!!
+    # TODO: re-locate!!!
     return NL.join(text.split(NL)[:n])
 
 
-def test_book_get(book):
-    # TODO: refactor!!!
-    TA = 6
-    TB = 9
+def ordinal(n):
+    if n == -1:
+        return 'last'
+    ords = ['zeroth', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
+    if n < -1:
+        return f'{ords[abs(n)]} to last'
+    if n == 20:
+        return 'twentieth'
+    if n > len(ords):
+        return f'{n}th'
+    return ords[n]
 
-    a = f"The first letter on page 1 of this book is '{book.get_page(1, 1, 1)}'."
-    n = 2
-    c = book.get_page(n, 1, 1)
-    b = f"The first letter on page {n} of this book is '{c}'."
-    d = book.get_page(7, 2, 5)
-    tc3 = f"The fifth letter of the second line on page 7 is '{d}'."
-    book.append(TB, a)
-    book.append(TB, b)
-    book.append(TB, tc3)
+
+def tc(book, p, line, letter):
+    """Generate test case results."""
+    r = book.get_page(p, line, letter)
+    if line == 1 and letter > 0:
+        loc = f"on page {p} of this book"
+    else:
+        loc = f"of the {ordinal(line)} line on page {p}"
+    return f"The {ordinal(letter)} letter {loc} is '{r}'."
+
+
+def test_book_get(book):
+    # TODO: re-locate!
+    TA, TB = 6, 9
+    cases = [
+        (1, 1, 1),
+        (2, 1, 1),
+        (7, 2, 5),
+        (7, -1, -1),
+        (7, -1, -2),
+        (7, -2, -1),
+        (7, 1, -1),
+        (10, 10, 10),
+        (11, 10, 10),
+        (4, 20, 20),
+        (5, 20, 20),
+        (6, 20, 20),
+        (7, 20, 20),
+        (8, -1, -1),
+    ]
+    results = []
+    for c in cases:
+        r = tc(book, *c)
+        results.append(r)
+        book.append(TB, r)
+    d = book.get_page(*cases[2])
     book.append(TA, f'''From flicking through the pages earlier, the reader had noticed that chapter {TB} starts with a number of statements about specific letters located throughout the book.
-The first was that "{a}".
+The first was that "{results[0]}".
 This appears to be correct.
-Then "{b}".
+Then "{results[1]}".
 Glancing at the facing page, this too is verified as correct.
-"{tc3}"
-Flicking forward {7-1} pages, the reader finds that the fifth letter of the second line is indeed '{d}'.
+"{results[2]}"
+Flicking forward {cases[2][0] - 1} pages, the reader finds that the fifth letter of the second line is indeed '{d}'.
     ''')
 
 

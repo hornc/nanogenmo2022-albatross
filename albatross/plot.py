@@ -11,7 +11,7 @@ RR = 'resigned resumption'
 
 J2 = f'''
 Yes, more of the same.
-Exasperated the reader jumps forward again, to page %%700%%.
+Exasperated, the reader jumps forward again, to page %%700%%.
 Midway on the page there is a quote, as if spoken by a character.
   "This is new..."
 
