@@ -12,12 +12,15 @@ TITLE = "Perspective of an Albatross"
 NL = '\n'
 
 PNUM = re.compile(r'\d+$|CHAPTER 1$')
+CHEAD = re.compile(r'CHAPTER \d+$')
+NONALPHA = re.compile(r'[\W]+')
 
 class Book():
     def __init__(self, title):
         self.title = title
         self.chapters = {}
         self.pdf = 'output.pdf'
+        self._pages = None
 
     def append(self, chapter, content):
         """Append content to chapter"""
@@ -26,10 +29,10 @@ class Book():
         else:
             self.chapters[chapter] = [content]
 
-    def get_page(self, n):
-        """Returns the text of page n."""
-        # TODO: memoise pages
-        # Save current book state to pdf and convert to txt to determine current page breaks...
+    @property
+    def pages(self):
+        if self._pages:
+            return self._pages
         self.to_pdf()
         subprocess.run(['pdftotext', self.pdf, 'pdf.txt'], capture_output=True)
         pages = []
@@ -44,8 +47,23 @@ class Book():
                     pb = ''
                 else:
                     pb += line
-        p = pages[n]
-        return p
+        self._pages = pages
+        return self._pages
+
+    def get_page(self, n, sentence=None, letter=None):
+        """
+        Returns the text of page n.
+        Or a specific sentence number,
+        or a character in that sentence.
+        """
+        if sentence:
+            sentences = [s for s in self.pages[n].split(NL) if not CHEAD.match(s)]
+            s = sentences[sentence - 1]
+            if letter:
+                return NONALPHA.sub('', s)[letter - 1]
+            else:
+                return s
+        return self.pages[n]
 
     def show(self):
         """Ouput Book to STDOUT."""
@@ -79,12 +97,12 @@ def test_book_get(book):
     TA = 6
     TB = 9
 
-    a = f"The first letter on page 1 of this book is '{book.get_page(1)[0]}'."
+    a = f"The first letter on page 1 of this book is '{book.get_page(1, 1, 1)}'."
     n = 2
-    c = book.get_page(2)[0]
+    c = book.get_page(n, 1, 1)
     b = f"The first letter on page {n} of this book is '{c}'."
-    d = book.get_page(7).split(NL)[3].replace(' ', '')[5]
-    tc3 = f"The fifth letter of the third line on page 7 is '{d}'."
+    d = book.get_page(7, 2, 5)
+    tc3 = f"The fifth letter of the second line on page 7 is '{d}'."
     book.append(TB, a)
     book.append(TB, b)
     book.append(TB, tc3)
@@ -93,7 +111,8 @@ The first was that "{a}".
 This appears to be correct.
 Then "{b}".
 Glancing at the facing page, this too is verified as correct.
-"{tc3}; flicking forward {7-1} pages, the reader finds that the fifth letter of the third line is indeed '{d}'.
+"{tc3}"
+Flicking forward {7-1} pages, the reader finds that the fifth letter of the second line is indeed '{d}'.
     ''')
 
 
@@ -105,7 +124,7 @@ def story(seedfile):
     book = Book(TITLE)
     book.append(1, start)
     for i in range(2, 13):
-        book.append(i, f'[placeholder chapter {i} start text]\n')
+        book.append(i, NL)
 
     a = reader.read(start, 'first_book')
     b = reader.read(get_sentences(a, 3))
