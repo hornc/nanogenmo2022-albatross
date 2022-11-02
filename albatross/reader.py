@@ -130,7 +130,7 @@ class Reader():
     def verb_comment(self, w, recent):
         """ Append some comment about a 'recent' action"""
         if recent == 0:
-            r = '"Yes" the reader thinks, "This is what I am _still_ doing..."'
+            r = '"Yes" the reader thinks, "This is what I am doing..."'
         if recent == 1:
             r = "The reader remembers taking this action very recently."
             r += " It just happened seconds ago."
