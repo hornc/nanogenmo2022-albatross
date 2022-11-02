@@ -40,16 +40,22 @@ def story(seedfile):
     reader = Reader()
     book = Book(TITLE)
     book.append(1, start)
+    book.append(2, '{placeholder chapter 2 start text}')
+    book.append(3, '{placeholder chapter 3 start text}')
+    book.append(4, '{placeholder chapter 4 start text}')
+
     a = reader.read(start, 'first_book')
     b = reader.read(get_sentences(a, 3))
     book.append(1, a)
     book.append(1, b)
     book.append(1, J1)
+
+    c = reader.read(get_sentences(b, 3))
+    book.append(1, reader.read(get_sentences(c, 3), 'first_page'))
+
+    book.append(3, c)
     book.append(1, J2)
 
-    book.append(2, '{placeholder}')
-    book.append(3, '{placeholder}')
-    book.append(4, '{placeholder}')
     return book
 
 
