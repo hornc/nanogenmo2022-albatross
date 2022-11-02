@@ -24,10 +24,16 @@ class Book():
 
     def show(self):
         """Ouput Book to STDOUT."""
-        print(self.title, '\n')
+        print('#', self.title, '\n')
+        print('\\pagenumbering{gobble}')
         for k, c in self.chapters.items():
-            print(f'CHAPTER {k}\n')
+            print('\\newpage')
+            print(f'\n## CHAPTER {k}\n\n')
+            if k == 1:
+                print('\\newpage')
+                print('\\pagenumbering{arabic}')
             print('\n'.join(c))
+
 
 def get_sentences(text, n):
     return NL.join(text.split(NL)[:n])
@@ -40,9 +46,8 @@ def story(seedfile):
     reader = Reader()
     book = Book(TITLE)
     book.append(1, start)
-    book.append(2, '{placeholder chapter 2 start text}')
-    book.append(3, '{placeholder chapter 3 start text}')
-    book.append(4, '{placeholder chapter 4 start text}')
+    for i in range(2, 13):
+        book.append(i, f'[placeholder chapter {i} start text]\n')
 
     a = reader.read(start, 'first_book')
     b = reader.read(get_sentences(a, 3))
