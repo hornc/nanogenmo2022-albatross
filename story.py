@@ -164,7 +164,7 @@ Flicking forward {cases[2][0] - 1} pages, the reader finds that the fifth letter
 
 
 def story(seedfile):
-    with open(fname, 'r') as f:
+    with open(seedfile, 'r') as f:
         start = f.read()
 
     reader = Reader()
