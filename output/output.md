@@ -482,6 +482,7 @@ The last letter of the second to last line on page 7 is 'd'.
 The last letter of the first line on page 7 is 'r'.
 The tenth letter of the tenth line on page 10 is 'e'.
 The tenth letter of the tenth line on page 11 is 'CURRENTLY EMPTY'.
+The tenth letter of the third to last line on page 21 is 'e'.
 The twentieth letter of the twentieth line on page 4 is 'r'.
 The twentieth letter of the twentieth line on page 5 is 'a'.
 The twentieth letter of the twentieth line on page 6 is 'h'.
