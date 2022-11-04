@@ -1,3 +1,5 @@
+from albatross.letters import describe
+
 
 COMMON_WORDS = ['in', 'the']
 VERBS = ['sits', 'read:']
@@ -172,5 +174,13 @@ class Reader():
             a = self.read_sentence(s)
             output.append(a)
             #self.wordstate = (self.wordstate + 1) % MAX_WS
+        return concat(output)
+
+    def describe_letters(self, text, context=''):
+        """
+        Reader describes the letters (symbols) of text.
+        Each sentence is separated by a new line (NL).
+        """
+        output = describe(text)
         return concat(output)
 

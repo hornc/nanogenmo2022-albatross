@@ -190,8 +190,11 @@ def story(seedfile):
     dpage = str(13) # TODO: needs to be looked up
     paragraphs = str(d.count(PAR))
     quote1 = f'{Q2}\n\n{quote(NL.join(d.split(NL)[:30]))}'
-    book.append(7, f'{Q1}{Q2}\n\n{d}')
-    book.append(1, J2.replace('%%QUOTE1%%', quote1).replace('%%paragraph%%', paragraphs).replace('%%700%%', dpage))
+    letter_section = reader.describe_letters(b[:900])  # TODO: choose source!
+    quote2 = letter_section[:3000]
+    book.append(7, f'{Q1}{Q2}{PAR}{d}{letter_section}')
+    section = J2.replace('%%QUOTE1%%', quote1).replace('%%paragraph%%', paragraphs).replace('%%700%%', dpage).replace('%%QUOTE2%%', quote2)
+    book.append(1, section)
 
     # Insert stucture view test cases and commentary
     test_book_get(book)
