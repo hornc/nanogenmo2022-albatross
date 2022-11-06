@@ -1,11 +1,30 @@
+import json
+import tracery
+from tracery.modifiers import base_english
 
 
 def listify(descriptions):
     return [f'Then {d}.' for d in descriptions]
 
 
-def letter(c):
-    return f"a description of the shape of the letter '{c}'"
+class Describer:
+    def __init__(self, data_file):
+        with open(data_file) as f:
+            self.rules = json.load(f)
+        self.grammar = tracery.Grammar(self.rules)
+        self.grammar.add_modifiers(base_english)
+
+    def letter(self, c):
+        if ord(c) == 10:
+            c = 'newline'
+        elif c == ' ':
+            c = 'gap'
+        elif c == '.':
+            c = 'period'
+        if c in self.rules:
+            return self.grammar.flatten(f'#{c}#')
+        raise Exception(f'MISSING LETTER: "{c}" = {ord(c) if len(c) == 1 else c}')
+        return f"a description of the shape of the letter '{c}'"
 
 
 def describe(text):
@@ -14,9 +33,13 @@ def describe(text):
     Input: text, a list of sentences.
     Returns: a list of sentences.
     """
+    # https://www.infor.uva.es/~descuder/docencia/IG/letterform_anatomy.pdf
+    letter_rules = 'data/letters.json'
+    describe = Describer(letter_rules)
+
     output = []
     for s in text:
         for c in s:
-            output.append(letter(c))
+            output.append(describe.letter(c))
     return listify(output)
 
