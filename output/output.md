@@ -495,17 +495,3 @@ The last letter of the last line on page 8 is 'CURRENTLY EMPTY'.
 
 
 
-\newpage
-
-## CHAPTER 11
-
-
-
-
-\newpage
-
-## CHAPTER 12
-
-
-
-

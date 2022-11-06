@@ -177,7 +177,7 @@ def story(seedfile):
     reader = Reader()
     book = Book(TITLE)
     book.append(1, start)
-    for i in range(2, 13):
+    for i in range(2, 11):
         book.append(i, NL)
 
     a = reader.read(start, 'first_book')
