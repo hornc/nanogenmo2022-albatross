@@ -13,6 +13,15 @@ def test_wordcount():
     assert count > TARGET, f"{p:%} complete!"
 
 
+def test_chapter_sizes():
+    print()
+    book = story(SEED)
+    chapters = book.wc_chapters()
+    ctarget = TARGET // len(chapters)
+    for i, c in enumerate(chapters):
+        print(f'{i + 1}:\t{c: >5}\t{c / ctarget: >7.2%}')
+
+
 def test_generated_content():
     book = story(SEED)
     words = book.to_markdown()

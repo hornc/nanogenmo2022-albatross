@@ -92,6 +92,12 @@ class Book():
              f.write(md)
          subprocess.run(['pandoc', 'output.md', '-o', self.pdf], capture_output=True)
 
+    def wc_chapters(self):
+        counts = []
+        for chapter in self.chapters:
+            counts.append(len(' '.join(self.chapters[chapter]).split()))
+        return counts
+
 
 def get_sentences(text, n):
     # TODO: re-locate!!!
