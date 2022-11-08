@@ -4,7 +4,20 @@ from tracery.modifiers import base_english
 
 
 def listify(descriptions):
-    return [f'Then {d}.' for d in descriptions]
+    desc = []
+    final = len(descriptions) - 1
+    for i, d in enumerate(descriptions):
+        if i == 0:
+            desc.append(f'First there appears {d}.')
+        elif i == 1:
+            desc.append(f'This is followed by {d}.')
+        elif i == final:
+            desc.append(f'Finally, {d}.')
+        elif (i & 8) and (i & 1):  # pretty arbitrary logic, experiment
+            desc.append(f'Next, {d}.')
+        else:
+            desc.append(f'Then {d}.')
+    return desc
 
 
 class Describer:
