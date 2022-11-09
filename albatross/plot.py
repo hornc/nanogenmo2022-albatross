@@ -83,9 +83,9 @@ As does the fourth.
 The fourth sentence avoids it altogether.
 As does the sixth.
 And seventh.
-And eigth.
+And eighth.
 And ninth, and so on.
-The last three sentences begin with conjuctions, the reader notes, which make them improper sentences?
+The last three sentences begin with conjunctions, the reader notes, which make them improper sentences?
 Does it matter?
 It is not the worst sin committed by this book.
 The fourteenth sentence mentions "CHAPTER 3" again — for no reason discernable to the reader.
