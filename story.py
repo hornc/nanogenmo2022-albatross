@@ -192,7 +192,7 @@ def story(seedfile):
 
     # First jump
     c = reader.read(get_sentences(b, 3))
-    cpage = str(8)  # chapter 3 page number
+    cpage = str(23)  # chapter 3 page number
     book.append(1, J1.replace('%%300%%', cpage))
     book.append(1, reader.read(get_sentences(c, 3), 'first_page'))
 
@@ -221,6 +221,7 @@ def story(seedfile):
 
     # Chapter 3
     book.append(3, SOCH3)
+    c = reader.read(NL.join(SOCH3.split(NL)[15:]))
     book.append(3, c)  # from ch.2
 
     # Insert stucture view test cases and commentary

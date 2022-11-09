@@ -78,9 +78,9 @@ SOCH3 = '''
 "CHAPTER 3" it reads at the top of page.
 ""CHAPTER 3"" begins the first sentence.
 A twice-quoted "CHAPTER 3" begins the second sentence.
-The third sentence does not begin with "CHAPTER 3", but mentions it anyway.
+The third sentence does not begin with "CHAPTER 3", but contains it anyway.
 As does the fourth.
-The fourth sentence avoids mentioning it altogether.
+The fourth sentence avoids it altogether.
 As does the sixth.
 And seventh.
 And eigth.
