@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 from albatross.reader import Reader
-from albatross.plot import J1, J2, Q1, Q2
+from albatross.plot import J1, J2, Q1, Q2, TEST_LETTERS
 
 
 TITLE = "Perspective of an Albatross"
@@ -154,20 +154,18 @@ def test_book_get(book):
         (7, 20, 20),
         (8, -1, -1),
     ]
-    results = []
+    statements = []
     for c in cases:
         r = tc(book, *c)
-        results.append(r)
+        statements.append(r.strip('.'))
         book.append(TB, r)
-    d = book.get_page(*cases[2])
-    book.append(TA, f'''From flicking through the pages earlier, the reader had noticed that chapter {TB} starts with a number of statements about specific letters located throughout the book.
-The first was that "{results[0]}".
-This appears to be correct.
-Then "{results[1]}".
-Glancing at the facing page, this too is verified as correct.
-"{results[2]}"
-Flicking forward {cases[2][0] - 1} pages, the reader finds that the fifth letter of the second line is indeed '{d}'.
-    ''')
+    result = book.get_page(*cases[2])
+    content = TEST_LETTERS.format(
+            chapter=TB,
+            statements=statements,
+            pages=cases[2][0] - 1,
+            result=result)
+    book.append(TA, content)
 
 
 def story(seedfile):

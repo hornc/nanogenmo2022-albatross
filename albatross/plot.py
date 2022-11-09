@@ -46,3 +46,11 @@ and so it continues — seemingly for many pages.
 The reader shakes their head in bewilderment.
 '''
 
+TEST_LETTERS = '''From flicking through the pages earlier, the reader had noticed that chapter {chapter} starts with a number of statements about specific letters located throughout the book.
+The first was that "{statements[0]}".
+This appears to be correct.
+Then "{statements[1]}".
+Glancing at the facing page, this too is verified as correct.
+"{statements[2]}"
+Flicking forward {pages} pages, the reader finds that the fifth letter of the second line is indeed '{result}'.
+'''
