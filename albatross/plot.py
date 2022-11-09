@@ -46,6 +46,57 @@ and so it continues — seemingly for many pages.
 The reader shakes their head in bewilderment.
 '''
 
+EOCH1 = '''
+Flicking through the entire book, the reader notices that there are {chapters} chapters.
+The first ends here, so the reader turns the page.
+'''
+
+SOCH2 = '''
+The reader has just turned the page, having finished reading the first chapter of the {chapters} which make up this book.
+They determined this recently by flicking through the pages looking for chapter headings, like the "CHAPTER 2" at the top of this page.
+
+Below this heading they read:
+
+'''
+
+EOCH2 = '''
+The reader is lulled into a trance by the almost meaningless repetition of self-descriptive words.
+The words begin to lose meaning, if they ever had any to begin with.
+
+The letters flow past:
+{letters}.
+
+Soon these too lose their meaning as symbols and there are just the shapes, printed in black ink on the paper:
+{letter_shapes}
+
+Finally, the reader sees a blank three-quarters of a page signalling the end of the second chapter.
+The empty space breaks the monotony and the page can be turned.
+'''
+
+# Can this be encoded?
+SOCH3 = '''
+"CHAPTER 3" it reads at the top of page.
+""CHAPTER 3"" begins the first sentence.
+A twice-quoted "CHAPTER 3" begins the second sentence.
+The third sentence does not begin with "CHAPTER 3", but mentions it anyway.
+As does the fourth.
+The fourth sentence avoids mentioning it altogether.
+As does the sixth.
+And seventh.
+And eigth.
+And ninth, and so on.
+The last three sentences begin with conjuctions, the reader notes, which make them improper sentences?
+Does it matter?
+It is not the worst sin committed by this book.
+The fourteenth sentence mentions "CHAPTER 3" again — for no reason discernable to the reader.
+From a quick glance through the remaining {pages} pages of this chapter it does not appear again.
+This chapter _is_ referenced later, but the reader is not directly aware of this yet.
+Having read and analysed the first fourteen sentences of this chapter the reader chooses to ignore the footnote at the bottom of this page and continue reading:
+
+'''
+
+
+
 TEST_LETTERS = '''From flicking through the pages earlier, the reader had noticed that chapter {chapter} starts with a number of statements about specific letters located throughout the book.
 The first was that "{statements[0]}".
 This appears to be correct.

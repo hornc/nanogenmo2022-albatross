@@ -1,13 +1,22 @@
 {
+	"A": "two long lines joined at the top to form an angle, with a horizontal crossbar also connecting them",
+	"B": "#vlong# with two closed curves, one above the other, to the right",
+	"C": "a large #cup# right",
+	"E": "#vlong# with three parallel horizontal strokes to the right",
+	"H": "two long vertical strokes connected in the middle by a horizontal crossbar",
 	"I": "#vlong#",
 	"N": "#z#",
 	"O": "#o# taking up the full height of the line",
+	"P": "#vlong# with a closed curve to the upper-right",
+	"R": "#P# and a short diagonal descending from where the curve meets the vertical rightwards to meet the baseline",
 	"S": "a #curve# symbol, with symetrical bends one above the other",
 	"T": "#vlong# with a horizontal cross bar at the very top",
 	"U": "a large #cup# top",
 	"W": "four lines, zig-zagging down, up, down, up",
 	"X": "two lines crossing each other taking up the full height of the line",
 	"Z": "#z#",
+
+	"2": "a large hook, open to the left, which curves down to meet a short horizontal touching the baseline",
 
 	"a": "a loop closing in on itself in a clockwise direction",
 	"b": "#vlong# followed by an attached closed curve",
@@ -39,6 +48,7 @@
 	"-": "a short horizontal midline dash",
 	":": "two dots placed one upon the other",
 	"'": "a point with a clockwise curving tail hovering towards the top of the line",
+	"quotes": "a pair of points with clockwise curving tails hovering towards the top of the line",
 	",": "a point with a clockwise tail, sitting upon the baseline",
 	"period": "a point, sitting upon the baseline",
 

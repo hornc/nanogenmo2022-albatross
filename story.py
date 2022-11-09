@@ -5,7 +5,9 @@ import subprocess
 import sys
 
 from albatross.reader import Reader
-from albatross.plot import J1, J2, Q1, Q2, TEST_LETTERS
+from albatross.plot import (J1, J2, Q1, Q2,
+    TEST_LETTERS, EOCH1, SOCH2, EOCH2,
+    SOCH3)
 
 
 TITLE = "Perspective of an Albatross"
@@ -15,6 +17,7 @@ PAR = NL * 2
 PNUM = re.compile(r'\d+$|CHAPTER 1$')
 CHEAD = re.compile(r'CHAPTER \d+$')
 NONALPHA = re.compile(r'[\W]+')
+
 
 class Book():
     def __init__(self, title):
@@ -153,6 +156,10 @@ def test_book_get(book):
         (6, 20, 20),
         (7, 20, 20),
         (8, -1, -1),
+        (23, -1, -1),
+        (41, -1, -1),
+        (42, -1, -1),
+        (43, -1, -1),
     ]
     statements = []
     for c in cases:
@@ -190,7 +197,7 @@ def story(seedfile):
     book.append(1, reader.read(get_sentences(c, 3), 'first_page'))
 
     # Second jump
-    book.append(3, c)
+
     d = c  # TODO: make different from c!
     dpage = str(13) # TODO: needs to be looked up
     paragraphs = str(d.count(PAR))
@@ -200,6 +207,21 @@ def story(seedfile):
     book.append(7, f'{Q1}{Q2}{PAR}{d}{letter_section}')
     section = J2.replace('%%QUOTE1%%', quote1).replace('%%paragraph%%', paragraphs).replace('%%700%%', dpage).replace('%%QUOTE2%%', quote2)
     book.append(1, section)
+    chapter_count = len(book.chapters)
+    chapter_count = 'ten'  # TODO: use num2words
+    book.append(1, EOCH1.format(chapters=chapter_count))
+
+    # Chapter 2
+    content = SOCH2.format(chapters=chapter_count)
+    ch2_read = reader.read(content.strip())
+    content += ch2_read
+    book.append(2, content)
+    letters = '-'.join(NONALPHA.sub('', ch2_read))
+    book.append(2, EOCH2.format(letters=letters, letter_shapes=reader.describe_letters(content[:500].strip())))
+
+    # Chapter 3
+    book.append(3, SOCH3)
+    book.append(3, c)  # from ch.2
 
     # Insert stucture view test cases and commentary
     test_book_get(book)

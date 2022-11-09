@@ -34,6 +34,8 @@ class Describer:
             c = 'gap'
         elif c == '.':
             c = 'period'
+        elif c == '"':
+            c = 'quotes'
         if c in self.rules:
             return self.grammar.flatten(f'#{c}#')
         raise Exception(f'MISSING LETTER: "{c}" = {ord(c) if len(c) == 1 else c}')
