@@ -9,7 +9,7 @@
 	"O": "#o# taking up the full height of the line",
 	"P": "#vlong# with a closed curve to the upper-right",
 	"R": "#P# and a short diagonal descending from where the curve meets the vertical rightwards to meet the baseline",
-	"S": "a #curve# symbol, with symetrical bends one above the other",
+	"S": "a #curve# symbol, with symmetrical bends one above the other",
 	"T": "#vlong# with a horizontal cross bar at the very top",
 	"U": "a large #cup# top",
 	"W": "four lines, zig-zagging down, up, down, up",
@@ -54,7 +54,7 @@
 
 	"gap": "there is a gap",
 	"newline": "the line ends and the reader's eyes drop to the next line and scan back to the leftmost symbol",
-	"curve": ["curvacious", "curvey"],
+	"curve": "curvaceous",
 	"crossbar": "with a crossbar",
 	"cup": "curved symbol open at the",
 	"handle": "with a slightly straighter",
