@@ -96,6 +96,10 @@ Having read and analysed the first fourteen sentences of this chapter the reader
 '''
 
 
+CEDILLA = '''
+The reader is beginning to suspect that the title, "{title}", and the engraving on page {engraving_page} is a meaningless façade to give this book an illusion of hidden depth and meaning.
+'''
+
 
 TEST_LETTERS = '''From flicking through the pages earlier, the reader had noticed that chapter {chapter} starts with a number of statements about specific letters located throughout the book.
 The first was that "{statements[0]}".
