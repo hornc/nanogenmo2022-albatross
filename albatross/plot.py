@@ -100,10 +100,22 @@ CEDILLA = '''
 The reader is beginning to suspect that the title, "{title}", and the engraving on page {engraving_page} is a meaningless façade to give this book an illusion of hidden depth and meaning.
 '''
 
-ENGRAVING = '''
-![— The Common Albatross (_Diomedea exulans_, Linn.)](data/engraving.png)
 
-'''
+engraving_caption = 'The Common Albatross (_Diomedea exulans_, Linn.)'
+
+ENGRAVING = '''
+Chapter {test_chapter} also refers to this engraving:
+
+![— {engraving_caption}](data/engraving.png)
+
+and correctly notes this page number as being {engraving_page}.
+'''.replace('{engraving_caption}', engraving_caption)
+
+
+ENGRAVING_TEST = '''
+There is an engraving of an albatross on page {engraving_page}. It is captioned "{engraving_caption}".
+'''.replace('{engraving_caption}', engraving_caption)
+
 
 TEST_LETTERS = '''From flicking through the pages earlier, the reader had noticed that chapter {chapter} starts with a number of statements about specific letters located throughout the book.
 The first was that "{statements[0]}".
