@@ -87,10 +87,19 @@ class Reader():
         return concat(output)
 
     def list_word(self, w, adj='next', loc=''):
+        if not w:
+            return ''
         output = []
-        output.append("Next there is a space followed by a new word:")
+        if w[0] == '_':
+            form = ' in italics'
+            w = w.strip('_')
+            mod = '_'
+        else:
+            mod = ''
+            form = ''
+        output.append(f'Next there is a space followed by a new word{form}:')
         for c in w:
-            output.append(f"'{c}' -")
+            output.append(f"'{mod}{c}{mod}' -")
         comment = self.comment(w)
         if comment:
             output.append(comment)
