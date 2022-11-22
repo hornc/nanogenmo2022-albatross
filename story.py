@@ -16,7 +16,7 @@ PAR = NL * 2
 
 PNUM = re.compile(r'\d+$|CHAPTER 1$')
 CHEAD = re.compile(r'CHAPTER \d+$')
-NONALPHA = re.compile(r'[\W]+')
+NONALPHA = re.compile(r'[\W_]+')
 
 
 class Book():
@@ -216,7 +216,7 @@ def story(seedfile):
     ch2_read = reader.read(content.strip())
     content += ch2_read
     book.append(2, content)
-    letters = '-'.join(NONALPHA.sub('', ch2_read))
+    letters = ' - '.join(NONALPHA.sub('', ch2_read))
     book.append(2, EOCH2.format(letters=letters, letter_shapes=reader.describe_letters(content[:500].strip())))
 
     # Chapter 3
@@ -225,7 +225,7 @@ def story(seedfile):
     book.append(3, c)  # from ch.2
 
     variables = {
-        'engraving_page': 27,
+        'engraving_page': 28,
         'title': TITLE,
         'test_chapter': 9,
     }

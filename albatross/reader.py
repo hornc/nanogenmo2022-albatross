@@ -1,12 +1,13 @@
+import re
 from albatross.letters import describe
 
 
-COMMON_WORDS = ['in', 'the']
+COMMON_WORDS = ['in', 'is', 'the']
 VERBS = ['sits', 'read:']
-CONJUNCTIONS = ['and']
+CONJUNCTIONS = ['and', 'but']
 MAX_WS = 4
 NL = '\n'
-
+DIGITS = re.compile('[0-9]+')
 
 def article(s):
     if s[0] == "'":  # quoted letter name
@@ -55,6 +56,8 @@ class Reader():
             return self.verb_word(w, adj, loc)
         if w in CONJUNCTIONS:
             return self.conj_word(w, adj, loc)
+        if DIGITS.match(w):
+            return self.number(w, adj, loc)
 
         if len(w) == 3 and w[0] == "'":
             # quoted letter
@@ -74,6 +77,12 @@ class Reader():
     def quoted_letter(self, w, adj='next', loc=''):
         w = f'capital {w}' if w.upper() == w else w
         return f'This is followed by {article(w)} enclosed in single quotation marks.'
+
+    def number(self, w, adj='next', loc=''):
+        # TODO: expand by counting and reporting the number of digits
+        w = DIGITS.match(w).group(0)
+        d = 'single' if len(w) == 1 else len(w)
+        return f"This is followed by the {d} digit number '{w}'."
 
     def spell_word(self, w, adj='next', loc=''):
         output = []
