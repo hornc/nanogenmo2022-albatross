@@ -79,7 +79,6 @@ class Reader():
         return f'This is followed by {article(w)} enclosed in single quotation marks.'
 
     def number(self, w, adj='next', loc=''):
-        # TODO: expand by counting and reporting the number of digits
         w = DIGITS.match(w).group(0)
         d = 'single' if len(w) == 1 else len(w)
         return f"This is followed by the {d} digit number '{w}'."
