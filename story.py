@@ -7,7 +7,7 @@ import sys
 from albatross.reader import Reader
 from albatross.plot import (J1, J2, Q1, Q2,
     TEST_LETTERS, EOCH1, SOCH2, EOCH2,
-    SOCH3, CEDILLA)
+    SOCH3, CEDILLA, ENGRAVING)
 
 
 TITLE = "Perspective of an Albatross"
@@ -229,6 +229,7 @@ def story(seedfile):
 
     # Insert stucture view test cases and commentary
     test_book_get(book)
+    book.append(6, ENGRAVING)
 
     return book
 
