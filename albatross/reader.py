@@ -31,6 +31,8 @@ class Reader():
             return 'Then there is a comma.'
         if c == ':':
             return 'Then there is a colon.'
+        if c == '-':
+            return 'There there is a dash.'
 
         if ccase:
             ccase += ' '
@@ -54,6 +56,11 @@ class Reader():
         if w in CONJUNCTIONS:
             return self.conj_word(w, adj, loc)
 
+        if len(w) == 3 and w[0] == "'":
+            # quoted letter
+            return self.quoted_letter(w, adj, loc)
+        elif len(w) == 1:
+            return self.letter(w, adj, loc)
         if self.wordstate == 0:
             return self.spell_word(w, adj, loc)
         elif self.wordstate == 1:
@@ -63,6 +70,9 @@ class Reader():
 
         # default:
         return self.spell_word(w, adj, loc)
+
+    def quoted_letter(self, w, adj='next', loc=''):
+        return f'This is followed by {article(w)} enclosed in single quotation marks.'
 
     def spell_word(self, w, adj='next', loc=''):
         output = []
