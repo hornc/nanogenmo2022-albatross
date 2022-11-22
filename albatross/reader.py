@@ -32,7 +32,7 @@ class Reader():
         if c == ':':
             return 'Then there is a colon.'
         if c == '-':
-            return 'There there is a dash.'
+            return 'Then there is a dash.'
 
         if ccase:
             ccase += ' '
@@ -50,7 +50,7 @@ class Reader():
     def word(self, w, adj='next', loc=''):
         #if w == 'reader':
         #    return self.selfref(w, adj, loc)
-        w = w.strip('.')
+        w = w.strip('.').strip(',')
         if w in VERBS:
             return self.verb_word(w, adj, loc)
         if w in CONJUNCTIONS:
@@ -72,6 +72,7 @@ class Reader():
         return self.spell_word(w, adj, loc)
 
     def quoted_letter(self, w, adj='next', loc=''):
+        w = f'capital {w}' if w.upper() == w else w
         return f'This is followed by {article(w)} enclosed in single quotation marks.'
 
     def spell_word(self, w, adj='next', loc=''):
@@ -117,7 +118,8 @@ class Reader():
 
     def read_word(self, w, adj='next', loc=''):
         output = []
-        output.append(f"The next word is '{w}'.")
+        mod = '_' if w.lower() == 'next' else ''  # emphasise next == next
+        output.append(f"The next word {mod}is{mod} '{w}'.")
         output.append(self.comment(w))
         return concat(output)
 
