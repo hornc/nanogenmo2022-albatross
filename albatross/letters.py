@@ -7,7 +7,10 @@ def listify(descriptions):
     desc = []
     final = len(descriptions) - 1
     for i, d in enumerate(descriptions):
-        if i == 0:
+        if not d.strip():  # whitespace, e.g. paragraph sep.
+            desc.append(d)
+            i -= 1
+        elif i == 0:
             desc.append(f'First there appears {d}.')
         elif i == 1:
             desc.append(f'This is followed by {d}.')
@@ -56,5 +59,7 @@ def describe(text):
     for s in text:
         for c in s:
             output.append(describe.letter(c))
+            if c == '\n':  # add paragraph break after each sentenece has been described
+                output.append('\n\n')
     return listify(output)
 
