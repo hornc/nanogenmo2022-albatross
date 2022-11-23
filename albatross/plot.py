@@ -95,13 +95,20 @@ Having read and analysed the first fourteen sentences of this chapter the reader
 
 '''
 
+engraving_caption = 'The Common Albatross (_Diomedea exulans_, Linn.)'
 
 CEDILLA = '''
 The reader is beginning to suspect that the title, "{title}", and the engraving on page {engraving_page} is a meaningless façade to give this book an illusion of hidden depth and meaning.
 '''
 
+FEATURES = '''
+The reader scans through the pages looking for other interesting features. There is a single figure, an engraving, captioned "{engraving_caption}" on page {engraving_page}.
 
-engraving_caption = 'The Common Albatross (_Diomedea exulans_, Linn.)'
+There are footnotes on pages %footnotes%. The repetitive nature of the descriptions limit the vocabulary somewhat, and there is a pattern to the typography, which has its own
+restricted character. Page {cedilla_page} makes use of the word "{cedilla_word}", which contains a cedilla on the letter 'ç', which is a typographically interesting variation the reader is able to note.
+"{cedilla_word}" is used in the book {cedilla_count} times. Other than that, the typeface appears to be that of basic Latin characters.
+'''.replace('{engraving_caption}', engraving_caption)
+
 
 ENGRAVING = '''
 Chapter {test_chapter} also refers to this engraving:

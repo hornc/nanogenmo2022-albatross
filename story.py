@@ -7,7 +7,8 @@ import sys
 from albatross.reader import Reader
 from albatross.plot import (J1, J2, Q1, Q2,
     TEST_LETTERS, EOCH1, SOCH2, EOCH2,
-    SOCH3, CEDILLA, ENGRAVING, ENGRAVING_TEST)
+    SOCH3, CEDILLA, ENGRAVING, ENGRAVING_TEST,
+    FEATURES,)
 
 
 TITLE = "Perspective of an Albatross"
@@ -219,16 +220,21 @@ def story(seedfile):
     letters = ' - '.join(NONALPHA.sub('', ch2_read))
     book.append(2, EOCH2.format(letters=letters, letter_shapes=reader.describe_letters(content[:500].strip())))
 
-    # Chapter 3
-    book.append(3, SOCH3)
-    c = reader.read(NL.join(SOCH3.split(NL)[15:]))
-    book.append(3, c)  # from ch.2
-
     variables = {
+        'cedilla_page': '??',
+        'cedilla_count': '??',
+        'cedilla_word': 'façade',
         'engraving_page': 28,
         'title': TITLE,
         'test_chapter': 9,
     }
+
+    # Chapter 3
+    book.append(3, SOCH3)
+    c = reader.read(NL.join(SOCH3.split(NL)[15:]))
+    book.append(3, c)  # from ch.2
+    book.append(3, FEATURES.format(**variables))
+
     # Chapter 8
     book.append(8, CEDILLA.format(**variables))
 
