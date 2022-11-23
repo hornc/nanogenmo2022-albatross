@@ -7,8 +7,9 @@ import sys
 from albatross.reader import Reader
 from albatross.plot import (J1, J2, Q1, Q2,
     TEST_LETTERS, EOCH1, SOCH2, EOCH2,
-    SOCH3, CEDILLA, ENGRAVING, ENGRAVING_TEST,
-    FEATURES,)
+    SOCH3, CEDILLA, FEATURES,
+    engraving_caption, ENGRAVING, ENGRAVING_TEST,
+)
 
 
 TITLE = "Perspective of an Albatross"
@@ -224,6 +225,7 @@ def story(seedfile):
         'cedilla_page': '??',
         'cedilla_count': '??',
         'cedilla_word': 'façade',
+        'engraving_caption': engraving_caption,
         'engraving_page': 28,
         'title': TITLE,
         'test_chapter': 9,

@@ -98,7 +98,7 @@ Having read and analysed the first fourteen sentences of this chapter the reader
 engraving_caption = 'The Common Albatross (_Diomedea exulans_, Linn.)'
 
 CEDILLA = '''
-The reader is beginning to suspect that the title, "{title}", and the engraving on page {engraving_page} is a meaningless façade to give this book an illusion of hidden depth and meaning.
+The reader is beginning to suspect that the title, "{title}", and the engraving on page {engraving_page}, with its reference to "{engraving_caption}", is a meaningless façade to give this book an illusion of hidden depth and meaning.
 '''
 
 FEATURES = '''
@@ -107,7 +107,7 @@ The reader scans through the pages looking for other interesting features. There
 There are footnotes on pages %footnotes%. The repetitive nature of the descriptions limit the vocabulary somewhat, and there is a pattern to the typography, which has its own
 restricted character. Page {cedilla_page} makes use of the word "{cedilla_word}", which contains a cedilla on the letter 'ç', which is a typographically interesting variation the reader is able to note.
 "{cedilla_word}" is used in the book {cedilla_count} times. Other than that, the typeface appears to be that of basic Latin characters.
-'''.replace('{engraving_caption}', engraving_caption)
+'''
 
 
 ENGRAVING = '''
@@ -116,12 +116,12 @@ Chapter {test_chapter} also refers to this engraving:
 ![— {engraving_caption}](data/engraving.png)
 
 and correctly notes this page number as being {engraving_page}.
-'''.replace('{engraving_caption}', engraving_caption)
+'''
 
 
 ENGRAVING_TEST = '''
 There is an engraving of an albatross on page {engraving_page}. It is captioned "{engraving_caption}".
-'''.replace('{engraving_caption}', engraving_caption)
+'''
 
 
 TEST_LETTERS = '''From flicking through the pages earlier, the reader had noticed that chapter {chapter} starts with a number of statements about specific letters located throughout the book.
