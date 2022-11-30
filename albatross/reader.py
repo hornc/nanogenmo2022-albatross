@@ -35,9 +35,10 @@ class Reader():
         if c == '-':
             return 'Then there is a dash.'
 
+        mod = '_' if ccase == 'italicised' else ''
         if ccase:
             ccase += ' '
-        cc = f"{ccase}'{c}'"
+        cc = f"{ccase}'{mod}{c}{mod}'"
         if loc:
             loc += ' '
         if adj == 'follow':
@@ -86,6 +87,10 @@ class Reader():
     def spell_word(self, w, adj='next', loc=''):
         output = []
         case_last = None
+        italics = False
+        if '_' in w:
+            w = w.replace('_', '')  # handle italics
+            italics = True
         l = len(w)
         punct = ','
         for i, c in enumerate(w):
@@ -97,6 +102,8 @@ class Reader():
                 ccase = ''
             else:
                 case_last = ccase
+            if italics:
+                ccase = 'italicised'
             a = self.letter(c, adj, loc, ccase, punct)
             adj = 'follow'
             output.append(a)
