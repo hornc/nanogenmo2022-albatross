@@ -132,3 +132,34 @@ Glancing at the facing page, this too is verified as correct.
 "{statements[2]}"
 Flicking forward {pages} pages, the reader finds that the fifth letter of the second line is indeed '{result}'.
 '''
+
+LAST_DAY = '''
+## The Last Day
+
+"What has happend?", the reader thinks.
+"This is the last chapter, and I have skipped through multiple blank pages -- entire empty chapters in fact."
+
+"I was expecting more."
+
+"There was supposed to be a build-up of conflict between myself and the narrator."
+
+"A potential existential battle of wills, where I experiemented with controlling the narrator, in a similar fashion to how the narrator appeared to be controlling _my_ actions."
+
+"I was supposed to test the power of the narrator, and catch them out making mistakes in their narration. I needed a chance to explore both paths of being a _compliant reader_, and an _adverserial reader_."
+
+"Where were these sections?"
+
+"I don't feel like I have done and experienced these things fully."
+
+"It seemed so promising." The reader sighs.
+
+"The mystery of the Albatross was somewhat (barely) introduced, but never got off the ground." The reader frowns, uncertain whether they even _noticed_ there was an albatross (introduced with the engraving on page {engraving_page}), or a mystery specific to it. Is this the narrator being overly presumptious? Have they been "caught out" right here?
+
+"There were footnotes mentioned, but none appear in this version."
+
+"There was supposed to be a nice cover, which tied into the Albatross mystery". The reader flips the book to the front -- the current cover is indeed blank.
+
+"Up to this chapter there are only {bulkwordcount} words. Everyone knows that is only {percent}% of a _real_ novel.", the reader thinks with disdain.
+
+
+'''

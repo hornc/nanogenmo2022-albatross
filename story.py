@@ -9,11 +9,13 @@ from albatross.plot import (J1, J2, Q1, Q2,
     TEST_LETTERS, EOCH1, SOCH2, EOCH2,
     SOCH3, CEDILLA, FEATURES,
     engraving_caption, ENGRAVING, ENGRAVING_TEST,
+    LAST_DAY
 )
 
 
 #TITLE = "Perspective of an Albatross"
 TITLE = 'An Unfinished Novel of {wordcount} Words'
+TARGET = 50000
 NL = '\n'
 PAR = NL * 2
 
@@ -249,6 +251,11 @@ def story(seedfile):
 
     book.append(6, ENGRAVING.format(**variables))
     book.append(9, ENGRAVING_TEST.format(**variables))
+
+    words = book.count()
+    percent = book.count() / TARGET * 100
+    # Chapter 10 -- The Last Day
+    book.append(10, LAST_DAY.format(bulkwordcount=words, percent=percent, **variables))
 
     # re-set title:
     book.title = TITLE.format(wordcount=book.count())
