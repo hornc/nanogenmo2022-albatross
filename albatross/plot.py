@@ -134,7 +134,7 @@ Flicking forward {pages} pages, the reader finds that the fifth letter of the se
 '''
 
 LAST_DAY = '''
-## The Last Day
+## The Last Day.
 
 "What has happend?", the reader thinks.
 "This is the last chapter, and I have skipped through multiple blank pages -- entire empty chapters in fact."
@@ -161,5 +161,21 @@ LAST_DAY = '''
 
 "Up to this chapter there are only {bulkwordcount} words. Everyone knows that is only {percent}% of a _real_ novel.", the reader thinks with disdain.
 
+While the reader is thinking these thoughts, {animal} appears out of nowhere and nuzzles up to the reader's legs.
+
+"MEOW." it says, apologetically.
+
+The reader smiles and pets it on the head, not too condescendingly.
+
+"At least you tried."
+
+With that, the reader looks down at the page in front of them and begins to read the final chapter in order to complete this book:
 
 '''
+
+FIN = '''
+The reader looks up and stares at the {animal}.
+
+"I was expecting a more satisfying resolution." they think.
+
+## FIN.'''

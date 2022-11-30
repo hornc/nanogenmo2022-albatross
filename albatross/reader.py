@@ -116,7 +116,7 @@ class Reader():
         else:
             mod = ''
             form = ''
-        output.append(f'Next there is a space followed by a new word{form}:')
+        output.append(f'{adj.capitalize()} there is a space followed by a new word{form}:')
         for c in w:
             output.append(f"'{mod}{c}{mod}' -")
         comment = self.comment(w)
@@ -172,8 +172,8 @@ class Reader():
         text = sentence.split(' ')
         output = []
         if context.startswith('first'):
+            self.wordstate = 0
             first = self.word(text[0], 'first', 'on the page')
-            self.wordstate = 1
             output.append(first)
             text = text[1:]
         for w in text:

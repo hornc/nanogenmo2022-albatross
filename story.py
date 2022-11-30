@@ -9,7 +9,7 @@ from albatross.plot import (J1, J2, Q1, Q2,
     TEST_LETTERS, EOCH1, SOCH2, EOCH2,
     SOCH3, CEDILLA, FEATURES,
     engraving_caption, ENGRAVING, ENGRAVING_TEST,
-    LAST_DAY
+    LAST_DAY, FIN
 )
 
 
@@ -255,12 +255,24 @@ def story(seedfile):
     words = book.count()
     percent = book.count() / TARGET * 100
     # Chapter 10 -- The Last Day
-    book.append(10, LAST_DAY.format(bulkwordcount=words, percent=percent, **variables))
+    lastday_animal = 'an albatross'
+    last_day = LAST_DAY.format(bulkwordcount=words, percent=percent, animal=lastday_animal, **variables)
 
+    read_last = meow(lastday_animal, reader.read(last_day.replace('#', '').strip(), 'first_page'))
+    book.append(10, last_day)
+    book.append(10, read_last)
+    book.append(10, meow(lastday_animal, reader.read(read_last[:3100])))
+    book.append(10, FIN.format(animal=lastday_animal.split()[1]))
     # re-set title:
     book.title = TITLE.format(wordcount=book.count())
     return book
 
+
+def meow(animal, text):
+    #if len(text) & 1:
+    #    rep = f'The {animal.split()[1]} lets out another plaintive "MEOW".'
+    #    return text.replace('Then there is a period, ending the current sentence.', rep)
+    return text
 
 if __name__ == '__main__':
     fname = sys.argv[1]

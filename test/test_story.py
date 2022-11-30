@@ -32,4 +32,4 @@ def test_generated_content():
     print('Plot words:', plot_words)
     gp = (count - plot_words) / count * 100
     print(f'Generated percentage: {int(gp)}%')
-    assert gp > 50  # Assert that at least half of the outout has been generated
+    assert gp > 50  # Assert that at least half of the output has been generated
