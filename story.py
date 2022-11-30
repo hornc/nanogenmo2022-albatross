@@ -12,7 +12,8 @@ from albatross.plot import (J1, J2, Q1, Q2,
 )
 
 
-TITLE = "Perspective of an Albatross"
+#TITLE = "Perspective of an Albatross"
+TITLE = 'An Unfinished Novel of {wordcount} Words'
 NL = '\n'
 PAR = NL * 2
 
@@ -34,6 +35,9 @@ class Book():
             self.chapters[chapter].append(content)
         else:
             self.chapters[chapter] = [content]
+
+    def count(self):
+        return len(self.to_markdown().split())
 
     @property
     def pages(self):
@@ -246,6 +250,8 @@ def story(seedfile):
     book.append(6, ENGRAVING.format(**variables))
     book.append(9, ENGRAVING_TEST.format(**variables))
 
+    # re-set title:
+    book.title = TITLE.format(wordcount=book.count())
     return book
 
 

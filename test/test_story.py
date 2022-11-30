@@ -6,8 +6,7 @@ TARGET = 50000
 
 def test_wordcount():
     book = story(SEED)
-    words = book.to_markdown()
-    count = len(words.split())
+    count = book.count()
     print('Count:', count)
     p = count / TARGET
     assert count > TARGET, f"{p:%} complete!"
