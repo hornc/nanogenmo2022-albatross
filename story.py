@@ -207,7 +207,7 @@ def story(seedfile):
     # Second jump
 
     d = c  # TODO: make different from c!
-    dpage = str(13) # TODO: needs to be looked up
+    dpage = str(29) # TODO: needs to be looked up
     paragraphs = str(d.count(PAR))
     quote1 = f'{Q2}\n\n{quote(NL.join(d.split(NL)[:30]))}'
     letter_section = reader.describe_letters(b[:900])  # TODO: choose source!
@@ -228,8 +228,8 @@ def story(seedfile):
     book.append(2, EOCH2.format(letters=letters, letter_shapes=reader.describe_letters(content[:500].strip())))
 
     variables = {
-        'cedilla_page': '??',
-        'cedilla_count': '??',
+        'cedilla_page': '47',
+        'cedilla_count': '3',
         'cedilla_word': 'façade',
         'engraving_caption': engraving_caption,
         'engraving_page': 28,
@@ -261,7 +261,7 @@ def story(seedfile):
     read_last = meow(lastday_animal, reader.read(last_day.replace('#', '').strip(), 'first_page'))
     book.append(10, last_day)
     book.append(10, read_last)
-    book.append(10, meow(lastday_animal, reader.read(read_last[:3100])))
+    book.append(10, meow(lastday_animal, reader.read(read_last[:read_last.find('sentence', 3050)+8])))
     book.append(10, FIN.format(animal=lastday_animal.split()[1]))
     # re-set title:
     book.title = TITLE.format(wordcount=book.count())

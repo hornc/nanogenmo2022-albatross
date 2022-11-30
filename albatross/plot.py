@@ -22,7 +22,7 @@ With a {RR} of their reading, the reader presses on.
 J2 = f'''
 Yes, more of the same.
 Exasperated, the reader jumps forward again, to page %%700%%.
-Midway on the page there is a quote, as if spoken by a character.
+At the top of the page there is a quote, as if spoken by a character.
   "This is new..."
 
 > {Q1}
@@ -69,7 +69,7 @@ The letters flow past:
 Soon these too lose their meaning as symbols and there are just the shapes, printed in black ink on the paper:
 {letter_shapes}
 
-Finally, the reader sees a blank three-quarters of a page signalling the end of the second chapter.
+Finally, the reader sees a blank quarter of a page signalling the end of the second chapter.
 The empty space breaks the monotony and the page can be turned.
 '''
 

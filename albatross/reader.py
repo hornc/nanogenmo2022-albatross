@@ -207,6 +207,8 @@ class Reader():
             text = text[1:]
             context = 'next'
         for s in text:
+            if not s:
+                continue
             a = self.read_sentence(s)
             output.append(a)
             #self.wordstate = (self.wordstate + 1) % MAX_WS
