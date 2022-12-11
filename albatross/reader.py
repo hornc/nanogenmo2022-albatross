@@ -35,9 +35,10 @@ class Reader():
         if c == '-':
             return 'Then there is a dash.'
 
+        mod = '_' if ccase == 'italicised' else ''
         if ccase:
             ccase += ' '
-        cc = f"{ccase}'{c}'"
+        cc = f"{ccase}'{mod}{c}{mod}'"
         if loc:
             loc += ' '
         if adj == 'follow':
@@ -86,6 +87,10 @@ class Reader():
     def spell_word(self, w, adj='next', loc=''):
         output = []
         case_last = None
+        italics = False
+        if '_' in w:
+            w = w.replace('_', '')  # handle italics
+            italics = True
         l = len(w)
         punct = ','
         for i, c in enumerate(w):
@@ -97,6 +102,8 @@ class Reader():
                 ccase = ''
             else:
                 case_last = ccase
+            if italics:
+                ccase = 'italicised'
             a = self.letter(c, adj, loc, ccase, punct)
             adj = 'follow'
             output.append(a)
@@ -116,7 +123,7 @@ class Reader():
         else:
             mod = ''
             form = ''
-        output.append(f'Next there is a space followed by a new word{form}:')
+        output.append(f'{adj.capitalize()} there is a space followed by a new word{form}:')
         for c in w:
             output.append(f"'{mod}{c}{mod}' -")
         comment = self.comment(w)
@@ -172,8 +179,8 @@ class Reader():
         text = sentence.split(' ')
         output = []
         if context.startswith('first'):
+            self.wordstate = 0
             first = self.word(text[0], 'first', 'on the page')
-            self.wordstate = 1
             output.append(first)
             text = text[1:]
         for w in text:
@@ -200,6 +207,8 @@ class Reader():
             text = text[1:]
             context = 'next'
         for s in text:
+            if not s:
+                continue
             a = self.read_sentence(s)
             output.append(a)
             #self.wordstate = (self.wordstate + 1) % MAX_WS

@@ -22,7 +22,7 @@ With a {RR} of their reading, the reader presses on.
 J2 = f'''
 Yes, more of the same.
 Exasperated, the reader jumps forward again, to page %%700%%.
-Midway on the page there is a quote, as if spoken by a character.
+At the top of the page there is a quote, as if spoken by a character.
   "This is new..."
 
 > {Q1}
@@ -69,7 +69,7 @@ The letters flow past:
 Soon these too lose their meaning as symbols and there are just the shapes, printed in black ink on the paper:
 {letter_shapes}
 
-Finally, the reader sees a blank three-quarters of a page signalling the end of the second chapter.
+Finally, the reader sees a blank quarter of a page signalling the end of the second chapter.
 The empty space breaks the monotony and the page can be turned.
 '''
 
@@ -132,3 +132,50 @@ Glancing at the facing page, this too is verified as correct.
 "{statements[2]}"
 Flicking forward {pages} pages, the reader finds that the fifth letter of the second line is indeed '{result}'.
 '''
+
+LAST_DAY = '''
+## The Last Day.
+
+"What has happend?", the reader thinks.
+"This is the last chapter, and I have skipped through multiple blank pages -- entire empty chapters in fact."
+
+"I was expecting more."
+
+"There was supposed to be a build-up of conflict between myself and the narrator."
+
+"A potential existential battle of wills, where I experiemented with controlling the narrator, in a similar fashion to how the narrator appeared to be controlling _my_ actions."
+
+"I was supposed to test the power of the narrator, and catch them out making mistakes in their narration. I needed a chance to explore both paths of being a _compliant reader_, and an _adverserial reader_."
+
+"Where were these sections?"
+
+"I don't feel like I have done and experienced these things fully."
+
+"It seemed so promising." The reader sighs.
+
+"The mystery of the Albatross was somewhat (barely) introduced, but never got off the ground." The reader frowns, uncertain whether they even _noticed_ there was an albatross (introduced with the engraving on page {engraving_page}), or a mystery specific to it. Is this the narrator being overly presumptious? Have they been "caught out" right here?
+
+"There were footnotes mentioned, but none appear in this version."
+
+"There was supposed to be a nice cover, which tied into the Albatross mystery". The reader flips the book to the front -- the current cover is indeed blank.
+
+"Up to this chapter there are only {bulkwordcount} words. Everyone knows that is only {percent}% of a _real_ novel.", the reader thinks with disdain.
+
+While the reader is thinking these thoughts, {animal} appears out of nowhere and nuzzles up to the reader's legs.
+
+"MEOW." it says, apologetically.
+
+The reader smiles and pets it on the head, not too condescendingly.
+
+"At least you tried."
+
+With that, the reader looks down at the page in front of them and begins to read the final chapter in order to complete this book:
+
+'''
+
+FIN = '''
+The reader looks up and stares at the {animal}.
+
+"I was expecting a more satisfying resolution." they think.
+
+## FIN.'''
